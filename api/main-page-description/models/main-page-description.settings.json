@@ -1,0 +1,16 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_page_descriptions",
+  "info": {
+    "name": "Main Page Description"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
