@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "package_items",
+  "info": {
+    "name": "Package Item"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}
