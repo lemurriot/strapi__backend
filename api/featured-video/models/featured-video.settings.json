@@ -1,21 +1,19 @@
 {
   "kind": "collectionType",
-  "collectionName": "videos",
+  "collectionName": "featured_videos",
   "info": {
-    "name": "video"
+    "name": "Featured Video"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
     "videoURL": {
-      "type": "string",
-      "required": true
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
     },
     "description": {
       "type": "richtext"

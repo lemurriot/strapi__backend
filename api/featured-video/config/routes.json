@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/videos",
-      "handler": "video.find",
+      "path": "/featured-videos",
+      "handler": "featured-video.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/videos/count",
-      "handler": "video.count",
+      "path": "/featured-videos/count",
+      "handler": "featured-video.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/videos/:id",
-      "handler": "video.findOne",
+      "path": "/featured-videos/:id",
+      "handler": "featured-video.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/videos",
-      "handler": "video.create",
+      "path": "/featured-videos",
+      "handler": "featured-video.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/videos/:id",
-      "handler": "video.update",
+      "path": "/featured-videos/:id",
+      "handler": "featured-video.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/videos/:id",
-      "handler": "video.delete",
+      "path": "/featured-videos/:id",
+      "handler": "featured-video.delete",
       "config": {
         "policies": []
       }
