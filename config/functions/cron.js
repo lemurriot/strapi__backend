@@ -18,4 +18,18 @@ module.exports = {
   // '0 1 * * 1': () => {
   //
   // }
+  // '* * * * * ': async () => {
+  //   console.log('Cron every second')
+
+  //   try {
+  //     await strapi.plugins['email'].services.email.send({
+  //       to: 'papershack@gmail.com',
+  //       subject: 'strapi test',
+  //       text: 'Hello world!',
+  //       html: 'Hello world!',
+  //     });
+  //   } catch(err) {
+  //     console.log('Exception in sending err', err)
+  //   }
+  // }
 };
