@@ -28,6 +28,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "orders": {
+      "via": "package_items",
+      "collection": "order"
     }
   }
 }

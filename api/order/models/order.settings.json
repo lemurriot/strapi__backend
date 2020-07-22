@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "order"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "package_items": {
+      "collection": "package-item",
+      "via": "orders",
+      "dominant": true
+    },
+    "number": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "orders"
+    },
+    "product_qty": {
+      "type": "json"
+    },
+    "user_email": {
+      "type": "email"
+    }
+  }
+}
