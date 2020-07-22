@@ -9,6 +9,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/orders/payment",
+      "handler": "order.setUpStripe",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders/count",
       "handler": "order.count",
