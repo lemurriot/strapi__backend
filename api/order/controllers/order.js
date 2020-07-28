@@ -58,39 +58,69 @@ module.exports = {
   },
   create: async (ctx) => {
     const { paymentIntent, name, email, cart } = ctx.request.body;
-    
+    console.log({paymentIntent})
+    let paymentInfo;
     // payment intent for validation
-    
-    
-    // check if data is proper
+    try {
+      paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
+      if (paymentInfo.status !== "succeeded") {
+        throw { message: "Payment was not successfully collected" };
+      }
+    } catch (err) {
+      // return status to client
+      ctx.response.status = 402;
+      return { error: err.message };
+    }
+
+    // check paymentIntent was not already used to generate an order
+    const alreadyExistingOrder = await strapi.services.order.find({
+      orderId: paymentIntent.id,
+    });
+    if (alreadyExistingOrder && alreadyExistingOrder.length) {
+      ctx.response.status = 402;
+      return { error: "This payment intent was already used" };
+    }
+
     const product_qty = [];
     const products = [];
     let sanitizedCart = [];
 
-    await Promise.all(cart.map(async product => {
-      const foundProduct =  await strapi.services['package-item'].findOne({id: product.id});
-      if (foundProduct) {
-        product_qty.push({ id: product.id, qty: product.qty });
-        products.push(foundProduct);
-        sanitizedCart.push({...foundProduct, ...{qty: product.qty}});
-        console.log(sanitizedCart)
-      }
-      return foundProduct;
-    }))
+    await Promise.all(
+      cart.map(async (product) => {
+        const foundProduct = await strapi.services["package-item"].findOne({
+          id: product.id,
+        });
+        if (foundProduct) {
+          product_qty.push({ id: product.id, qty: product.qty });
+          products.push(foundProduct);
+          sanitizedCart.push({ ...foundProduct, ...{ qty: product.qty } });
+        }
+        return foundProduct;
+      })
+    );
     let total_in_dollars = sanitizedCart.reduce(
       (accumulator, item) => item.qty * item.price + accumulator,
       0
     );
+    // check payment amt is consistent (stripe payments are in cents)
+    if (paymentInfo.amount !== (total_in_dollars * 100)) {
+      ctx.response.status = 402;
+      return { error: "The total to be paid is different from Payment Intent" };
+    }
+
     const entry = {
+      orderId: paymentIntent && paymentIntent.id,
       user_name: name,
       user_email: email,
       product_qty,
       products,
       total_in_dollars,
-      date_created: Date.now(),
-    }
-    
+      date_created: paymentIntent ? paymentIntent.created : Date.now(),
+    };
+
     const entity = await strapi.services.order.create(entry);
     return sanitizeEntity(entity, { model: strapi.models.order });
   },
 };
+
+stripe.paymentIntents.retrieve();

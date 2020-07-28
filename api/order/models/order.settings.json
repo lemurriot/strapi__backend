@@ -28,6 +28,9 @@
     },
     "date_created": {
       "type": "datetime"
+    },
+    "orderId": {
+      "type": "string"
     }
   }
 }
