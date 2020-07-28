@@ -1,4 +1,5 @@
 "use strict";
+const { sanitizeEntity } = require("strapi-utils");
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 /**
@@ -28,7 +29,7 @@ module.exports = {
             const { id, price, title, qty } = validatedProduct;
             validatedCart.push({ id, title, price, qty });
           } else {
-            throw new Error('Cart contains an invalid item');
+            throw new Error("Cart contains an invalid item");
           }
           return validatedProduct;
         })
@@ -54,5 +55,42 @@ module.exports = {
     } catch (err) {
       return { error: err.message };
     }
+  },
+  create: async (ctx) => {
+    const { paymentIntent, name, email, cart } = ctx.request.body;
+    
+    // payment intent for validation
+    
+    
+    // check if data is proper
+    const product_qty = [];
+    const products = [];
+    let sanitizedCart = [];
+
+    await Promise.all(cart.map(async product => {
+      const foundProduct =  await strapi.services['package-item'].findOne({id: product.id});
+      if (foundProduct) {
+        product_qty.push({ id: product.id, qty: product.qty });
+        products.push(foundProduct);
+        sanitizedCart.push({...foundProduct, ...{qty: product.qty}});
+        console.log(sanitizedCart)
+      }
+      return foundProduct;
+    }))
+    let total_in_dollars = sanitizedCart.reduce(
+      (accumulator, item) => item.qty * item.price + accumulator,
+      0
+    );
+    const entry = {
+      user_name: name,
+      user_email: email,
+      product_qty,
+      products,
+      total_in_dollars,
+      date_created: Date.now(),
+    }
+    
+    const entity = await strapi.services.order.create(entry);
+    return sanitizeEntity(entity, { model: strapi.models.order });
   },
 };

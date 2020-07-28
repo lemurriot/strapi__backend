@@ -56,10 +56,6 @@
     "articles": {
       "via": "author",
       "collection": "article"
-    },
-    "orders": {
-      "via": "user",
-      "collection": "order"
     }
   }
 }

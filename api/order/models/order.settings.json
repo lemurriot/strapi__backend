@@ -9,27 +9,25 @@
     "timestamps": true
   },
   "attributes": {
-    "package_items": {
+    "products": {
       "collection": "package-item",
       "via": "orders",
       "dominant": true
     },
-    "number": {
-      "type": "string"
-    },
-    "total": {
-      "type": "decimal"
-    },
-    "user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "orders"
+    "total_in_dollars": {
+      "type": "integer"
     },
     "product_qty": {
       "type": "json"
     },
     "user_email": {
       "type": "email"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "date_created": {
+      "type": "datetime"
     }
   }
 }

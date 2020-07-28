@@ -30,7 +30,7 @@
       "required": false
     },
     "orders": {
-      "via": "package_items",
+      "via": "products",
       "collection": "order"
     }
   }
