@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/amazon-links",
+      "handler": "amazon-links.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/amazon-links/count",
+      "handler": "amazon-links.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/amazon-links/:id",
+      "handler": "amazon-links.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/amazon-links",
+      "handler": "amazon-links.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/amazon-links/:id",
+      "handler": "amazon-links.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/amazon-links/:id",
+      "handler": "amazon-links.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
