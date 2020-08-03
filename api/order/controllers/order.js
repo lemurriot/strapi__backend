@@ -139,6 +139,7 @@ module.exports = {
       await strapi.plugins["email"].services.email.send({
         to: email,
         bcc: "dharmic.astrologicalsystems@gmail.com",
+        replyTo: 'dennis@dharmicastrology.com',
         subject: "Thank you for your order",
         text: `Thank you for your order. Your order is number ${order_id}. Someone will be in touch within three business days to schedule an appointment. Please reply to this email with any questions.`,
         html: `<h4>Hello ${name},</h4>
@@ -157,7 +158,7 @@ module.exports = {
           </table>
           <span style="text-align:right; margin-top: 10px">Total: $${entity.total_in_dollars}.00</span>
           <p>Your order number is ${order_id}</p>
-          <p>Someone will be in touch soon to schedule your appointment. Please reach out to us at dharmic.astrologicalsystems@gmail.com if you do not hear from us within three business days.</p>
+          <p>Someone will be in touch soon to schedule your appointment. Please reach out to us at dennis@dharmicastrology.com if you do not hear from us within three business days.</p>
           <div>Sincerely,</div>
           <div>Dharmic Astrology</div>
           <a href="https://www.dharmicastrology.com">www.dharmicastrology.com</a>
