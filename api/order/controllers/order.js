@@ -114,7 +114,7 @@ module.exports = {
       product_qty,
       products,
       total_in_dollars,
-      date_created: paymentIntent ? paymentIntent.created : Date.now(),
+      date_created: Date.now(),
     };
 
     const entity = await strapi.services.order.create(entry);
