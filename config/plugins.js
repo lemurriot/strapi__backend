@@ -13,8 +13,8 @@ module.exports = ({ env }) => ({
       apiKey: env('SENDGRID_API_KEY'),
     },
     settings: {
-      defaultFrom: env('SENDGRID_DEFAULT_FROM', 'developer@strapi.io'),
-      defaultReplyTo: env('SENDGRID_DEFAULT_REPLY_TO', 'developer@strapi.io'),
+      defaultFrom: env('SENDGRID_DEFAULT_FROM', 'admin@dharmicastrology.com'),
+      defaultReplyTo: env('SENDGRID_DEFAULT_REPLY_TO', 'admin@dharmicastrology.com'),
     },
   },
 });
