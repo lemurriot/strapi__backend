@@ -10,9 +10,12 @@
   },
   "attributes": {
     "srcUrl": {
-      "type": "text"
+      "type": "string"
     },
     "title": {
+      "type": "string"
+    },
+    "img_url": {
       "type": "string"
     }
   }
