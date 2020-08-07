@@ -34,6 +34,9 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "articles"
+    },
+    "synopsis": {
+      "type": "richtext"
     }
   }
 }
