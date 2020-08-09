@@ -10,14 +10,16 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "content": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "thumbnail": {
       "model": "file",
@@ -36,7 +38,8 @@
       "via": "articles"
     },
     "synopsis": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     }
   }
 }
