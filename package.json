@@ -15,7 +15,7 @@
     "node-fetch": "^2.6.0",
     "pg": "^8.2.2",
     "sqlite3": "latest",
-    "strapi": "3.0.5",
+    "strapi": "3.2.5",
     "strapi-admin": "3.0.5",
     "strapi-connector-bookshelf": "3.0.5",
     "strapi-plugin-content-manager": "3.0.5",
